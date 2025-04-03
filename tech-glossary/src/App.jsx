@@ -1,33 +1,35 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import AddTerm from "./pages/AddTerm";
-import EditTerm from "./pages/EditTerm";
+import Favorites from "./pages/Favorites";
+import Register from "./pages/CreateAccount";
 import Login from "./pages/Login";
-import Dashboard from "./pages/Dashboard";
-import { TermsProvider } from "./context/TermsContext";
-import "tailwindcss/tailwind.css";
+import SavedPage from "./pages/SavedPage";
+// import TermDetail from "./pages/TermDetail";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
-    <TermsProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow container mx-auto p-4">
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-100 text-gray-900">
+        <Header />
+        <div className="flex flex-1">
+          <Sidebar />
+          <main className="flex-1 p-6">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/add-term" element={<AddTerm />} />
-              <Route path="/edit-term/:id" element={<EditTerm />} />
+              <Route path="/favorites" element={<Favorites />} />
+              <Route path="/register" element={<Register />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/saved" element={<SavedPage />} />
+              {/* <Route path="/term/:id" element={<TermDetail />} /> */}
             </Routes>
           </main>
-          <Footer />
         </div>
-      </Router>
-    </TermsProvider>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
